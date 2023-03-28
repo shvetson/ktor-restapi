@@ -1,1 +1,1 @@
-rootProject.name = "ktor-restapi"
+rootProject.name = "ktor-restapi-jwt"

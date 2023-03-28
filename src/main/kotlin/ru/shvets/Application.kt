@@ -1,6 +1,7 @@
 package ru.shvets
 
 import io.ktor.server.application.*
+import kotlinx.coroutines.runBlocking
 import ru.shvets.dao.DaoUserDataSource
 import ru.shvets.dao.DatabaseFactory
 import ru.shvets.dao.UserDataSource
@@ -15,7 +16,6 @@ fun main(args: Array<String>): Unit =
 @Suppress("unused") // application.conf references the main function. This annotation prevents the IDE from marking it as unused.
 fun Application.module() {
 
-    log.info("Init database!")
     DatabaseFactory.init()
 
     val userDataSource: UserDataSource = DaoUserDataSource()

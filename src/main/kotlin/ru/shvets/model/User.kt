@@ -1,5 +1,6 @@
 package ru.shvets.model
 
+import kotlinx.serialization.Serializable
 import org.jetbrains.exposed.sql.Table
 
 /**
@@ -8,6 +9,7 @@ import org.jetbrains.exposed.sql.Table
  * @date  28.03.2023 00:41
  */
 
+@Serializable
 data class User(
     val id: Long? = null,
     val username: String,
@@ -18,8 +20,8 @@ data class User(
 object Users : Table(name = "users") {
     val id = long("id").autoIncrement()
     val username = varchar("username", 20)
-    val password = varchar("password", 20)
-    val salt = varchar("salt", 30)
+    val password = varchar("password", 150)
+    val salt = varchar("salt", 150)
 
     override val primaryKey = PrimaryKey(id)
 }
