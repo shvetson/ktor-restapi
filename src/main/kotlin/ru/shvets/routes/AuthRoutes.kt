@@ -2,6 +2,8 @@ package ru.shvets.routes
 
 import io.ktor.http.*
 import io.ktor.server.application.*
+import io.ktor.server.auth.*
+import io.ktor.server.auth.jwt.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
@@ -97,5 +99,15 @@ fun Route.signIn(
 
         call.respondText(AuthResponse(token = token).toString(), status = HttpStatusCode.OK)
 
+    }
+}
+
+fun Route.getInfo() {
+    authenticate {
+        get("user") {
+            val principal = call.principal<JWTPrincipal>()
+            val userId = principal?.getClaim("userId", String::class)
+            call.respondText("User id: $userId", status = HttpStatusCode.OK)
+        }
     }
 }

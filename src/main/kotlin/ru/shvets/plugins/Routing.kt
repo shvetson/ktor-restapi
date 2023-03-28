@@ -4,6 +4,7 @@ import io.ktor.server.routing.*
 import io.ktor.server.response.*
 import io.ktor.server.application.*
 import ru.shvets.dao.UserDataSource
+import ru.shvets.routes.getInfo
 import ru.shvets.routes.signIn
 import ru.shvets.routes.signUp
 import ru.shvets.security.hashing.HashingService
@@ -30,6 +31,8 @@ fun Application.configureRouting(
             tokenService = tokenService,
             tokenConfig = tokenConfig
         )
+
+        getInfo()
     }
 
 }
